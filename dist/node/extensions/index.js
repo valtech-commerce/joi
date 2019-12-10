@@ -12,6 +12,12 @@ Object.defineProperty(exports, "absolutePath", {
     return _absolutePath.default;
   }
 });
+Object.defineProperty(exports, "kebabCase", {
+  enumerable: true,
+  get: function () {
+    return _kebabCase.default;
+  }
+});
 Object.defineProperty(exports, "variableName", {
   enumerable: true,
   get: function () {
@@ -22,6 +28,8 @@ Object.defineProperty(exports, "variableName", {
 var _joiSchema = _interopRequireDefault(require("./object/joi-schema"));
 
 var _absolutePath = _interopRequireDefault(require("./string/absolute-path"));
+
+var _kebabCase = _interopRequireDefault(require("./string/kebab-case"));
 
 var _variableName = _interopRequireDefault(require("./string/variable-name"));
 
