@@ -1,11 +1,18 @@
 //--------------------------------------------------------
-//-- Validate argument - Unit tests
+//-- Validate argument - Integration tests
 //--------------------------------------------------------
-import Joi                  from '@hapi/joi';
-import { validateArgument } from '../../../dist/node';
+import Joi                   from '@hapi/joi';
+import { validateArgument }  from '../../../dist/node';
+import { given, when, then } from './methods.gwt';
 
 
 describe(`Validate that validateArgument works`, () => {
+
+	beforeAll(() => {
+		given.methodsTabulaRasa();
+		given.currentMethod(validateArgument);
+	});
+
 
 	//-- Does validate
 	[
@@ -13,11 +20,13 @@ describe(`Validate that validateArgument works`, () => {
 		['an undefined value', ['abc', undefined, Joi.any()]]
 	]
 		.forEach(([description, parameters]) => {
+
 			test(`Ensure ${description} validates`, () => {
-				expect(() => {
-					validateArgument(...parameters);
-				}).not.toThrow();
+				given.parameters(parameters);
+				when.methodCalled();
+				then.shouldNotHaveThrown();
 			});
+
 		})
 	;
 
@@ -32,11 +41,13 @@ describe(`Validate that validateArgument works`, () => {
 		['an invalid schema',   ['abc', true, {}]]
 	]
 		.forEach(([description, parameters]) => {
+
 			test(`Ensure ${description} does not validate`, () => {
-				expect(() => {
-					validateArgument(...parameters);
-				}).toThrow();
+				given.parameters(parameters);
+				when.methodCalled();
+				then.shouldHaveThrown();
 			});
+
 		})
 	;
 

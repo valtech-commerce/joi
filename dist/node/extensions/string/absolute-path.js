@@ -1,13 +1,15 @@
 "use strict";
 
-exports.default = void 0;
-
+exports.extension = exports.id = void 0;
 //--------------------------------------------------------
 //-- Absolute path
 //--------------------------------------------------------
-var _default = joi => {
+const id = 'absolutePath';
+exports.id = id;
+
+const extension = joi => {
   return {
-    type: 'absolutePath',
+    type: id,
     base: joi.string(),
     messages: {
       error: '"{{#label}}" must be an absolute path'
@@ -25,6 +27,4 @@ var _default = joi => {
   };
 };
 
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
+exports.extension = extension;

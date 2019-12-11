@@ -1,6 +1,6 @@
 "use strict";
 
-exports.default = void 0;
+exports.extension = exports.id = void 0;
 
 var _isVarName = _interopRequireDefault(require("is-var-name"));
 
@@ -9,9 +9,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //--------------------------------------------------------
 //-- Variable name
 //--------------------------------------------------------
-var _default = joi => {
+const id = 'variableName';
+exports.id = id;
+
+const extension = joi => {
   return {
-    type: 'variableName',
+    type: id,
     base: joi.string(),
     messages: {
       error: '"{{#label}}" must be a valid JavaScript identifier name'
@@ -29,6 +32,4 @@ var _default = joi => {
   };
 };
 
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
+exports.extension = extension;

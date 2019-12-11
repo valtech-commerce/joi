@@ -1,31 +1,31 @@
 //--------------------------------------------------------
 //-- joi - Feature tests
 //--------------------------------------------------------
-import { difference } from 'lodash';
-import Joi            from '@hapi/joi';
+import { given, when, then } from './index.gwt';
 
 
 describe(`Validate that it works`, () => {
-	let ExtendedJoi;
-	let extensions;
+
+	beforeAll(() => {
+		given.featureTabulaRasa();
+	});
 
 
 	test(`Ensure package loads`, () => {
-		expect(() => {
-			({ Joi: ExtendedJoi, extensions } = require('../../dist/node'));  // eslint-disable-line global-require
-		}).not.toThrow();
+		when.packageIsImported();
+		then.shouldNotHaveThrown();
 	});
 
 
 	test(`Ensure extended joi extends vanilla joi`, () => {
-		expect(ExtendedJoi).toBeObject();
-		expect(ExtendedJoi).toContainEntries(Object.entries(Joi));
+		when.packageIsImported();
+		then.extendedJoiShouldContainVanillaJoi();
 	});
 
 
 	test(`Ensure all extensions are exposed in joi with the same name`, () => {
-		const joiKeys = difference(Object.keys(ExtendedJoi), Object.keys(Joi));
-		expect(joiKeys).toIncludeAllMembers(Object.keys(extensions));
+		when.packageIsImported();
+		then.extendedJoiShouldContainAllExtensions();
 	});
 
 });

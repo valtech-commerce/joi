@@ -1,36 +1,23 @@
 "use strict";
 
-Object.defineProperty(exports, "joiSchema", {
-  enumerable: true,
-  get: function () {
-    return _joiSchema.default;
-  }
-});
-Object.defineProperty(exports, "absolutePath", {
-  enumerable: true,
-  get: function () {
-    return _absolutePath.default;
-  }
-});
-Object.defineProperty(exports, "kebabCase", {
-  enumerable: true,
-  get: function () {
-    return _kebabCase.default;
-  }
-});
-Object.defineProperty(exports, "variableName", {
-  enumerable: true,
-  get: function () {
-    return _variableName.default;
-  }
-});
+var joiSchema = _interopRequireWildcard(require("./object/joi-schema"));
 
-var _joiSchema = _interopRequireDefault(require("./object/joi-schema"));
+var absolutePath = _interopRequireWildcard(require("./string/absolute-path"));
 
-var _absolutePath = _interopRequireDefault(require("./string/absolute-path"));
+var kebabCase = _interopRequireWildcard(require("./string/kebab-case"));
 
-var _kebabCase = _interopRequireDefault(require("./string/kebab-case"));
+var variableName = _interopRequireWildcard(require("./string/variable-name"));
 
-var _variableName = _interopRequireDefault(require("./string/variable-name"));
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+//--------------------------------------------------------
+//-- Extensions
+//--------------------------------------------------------
+module.exports = {
+  [joiSchema.id]: joiSchema.extension,
+  [absolutePath.id]: absolutePath.extension,
+  [kebabCase.id]: kebabCase.extension,
+  [variableName.id]: variableName.extension
+};

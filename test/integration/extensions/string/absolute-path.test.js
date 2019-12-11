@@ -1,11 +1,19 @@
 //--------------------------------------------------------
-//-- Absolute path - Unit tests
+//-- Absolute path - Integration tests
 //--------------------------------------------------------
-import helper from '../../helpers/extensions';
+import { given, when, then } from '../extensions.gwt';
+import { id }                from '../../../../dist/node/extensions/string/absolute-path';
 
 
-helper.testValues(
-	'absolutePath',
+describe(`Validate that ${id} extension works`, () => {
+
+	beforeAll(() => {
+		given.extensionsTabulaRasa();
+		given.currentExtension(id);
+	});
+
+
+	//-- Does validate
 	[
 		['the root',                         '/'],
 		['a root directory',                 '/abc'],
@@ -15,7 +23,20 @@ helper.testValues(
 		['a Windows root directory',         'a:/bc'],
 		['a Windows absolute file',          'a:/bc.xyz'],
 		['a Windows multiletter root drive', 'ab:/']
-	],
+	]
+		.forEach(([description, value]) => {
+
+			test(`Ensure ${description} validates`, () => {
+				given.value(value);
+				when.extensionCalled();
+				then.resultShouldReturnNoError();
+			});
+
+		})
+	;
+
+
+	//-- Does not validate
 	[
 		['a Number',             1],
 		['a Boolean',            true],
@@ -28,4 +49,15 @@ helper.testValues(
 		['an upper directory',   '../abc.xyz'],
 		['an current directory', './abc.xyz']
 	]
-);
+		.forEach(([description, value]) => {
+
+			test(`Ensure ${description} does not validate`, () => {
+				given.value(value);
+				when.extensionCalled();
+				then.resultShouldReturnAnError();
+			});
+
+		})
+	;
+
+});

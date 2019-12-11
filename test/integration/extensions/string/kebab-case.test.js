@@ -1,11 +1,19 @@
 //--------------------------------------------------------
-//-- Variable name - Unit tests
+//-- Kebab case - Integration tests
 //--------------------------------------------------------
-import helper from '../../helpers/extensions';
+import { given, when, then } from '../extensions.gwt';
+import { id }                from '../../../../dist/node/extensions/string/kebab-case';
 
 
-helper.testValues(
-	'kebabCase',
+describe(`Validate that ${id} extension works`, () => {
+
+	beforeAll(() => {
+		given.extensionsTabulaRasa();
+		given.currentExtension(id);
+	});
+
+
+	//-- Does validate
 	[
 		['a no hypen',         'a'],
 		['a one hypen',        'a-b'],
@@ -13,7 +21,20 @@ helper.testValues(
 		['a double character', 'ab-bc'],
 		['an alphanumeric',    'a-1-c'],
 		['an all-dressed',     'a1-2b-c3']
-	],
+	]
+		.forEach(([description, value]) => {
+
+			test(`Ensure ${description} validates`, () => {
+				given.value(value);
+				when.extensionCalled();
+				then.resultShouldReturnNoError();
+			});
+
+		})
+	;
+
+
+	//-- Does not validate
 	[
 		['a Number',          1],
 		['a Boolean',         true],
@@ -32,4 +53,15 @@ helper.testValues(
 		['a hyphen ending',   'abc-'],
 		['an double-hyphen',  'a--b']
 	]
-);
+		.forEach(([description, value]) => {
+
+			test(`Ensure ${description} does not validate`, () => {
+				given.value(value);
+				when.extensionCalled();
+				then.resultShouldReturnAnError();
+			});
+
+		})
+	;
+
+});

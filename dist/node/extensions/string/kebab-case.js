@@ -1,13 +1,15 @@
 "use strict";
 
-exports.default = void 0;
-
+exports.extension = exports.id = void 0;
 //--------------------------------------------------------
 //-- kebab-case
 //--------------------------------------------------------
-var _default = joi => {
+const id = 'kebabCase';
+exports.id = id;
+
+const extension = joi => {
   return {
-    type: 'kebabCase',
+    type: id,
     base: joi.string(),
     messages: {
       error: '"{{#label}}" must be kebab-case'
@@ -25,6 +27,4 @@ var _default = joi => {
   };
 };
 
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
+exports.extension = extension;

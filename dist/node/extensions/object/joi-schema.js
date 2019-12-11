@@ -1,13 +1,15 @@
 "use strict";
 
-exports.default = void 0;
-
+exports.extension = exports.id = void 0;
 //--------------------------------------------------------
 //-- joi schema
 //--------------------------------------------------------
-var _default = joi => {
+const id = 'joiSchema';
+exports.id = id;
+
+const extension = joi => {
   return {
-    type: 'joiSchema',
+    type: id,
     base: joi.object(),
     messages: {
       error: '"{{#label}}" must be an joi schema'
@@ -25,6 +27,4 @@ var _default = joi => {
   };
 };
 
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
+exports.extension = extension;

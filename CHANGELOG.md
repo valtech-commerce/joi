@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - `validateArgument` accepts undefined value
+- Code refactor
+- Tests migration to Given-When-Then
 - Maintenance updates
 
 

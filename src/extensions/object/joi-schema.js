@@ -1,10 +1,11 @@
 //--------------------------------------------------------
 //-- joi schema
 //--------------------------------------------------------
+export const id = 'joiSchema';
 
-export default (joi) => {
+export const extension = (joi) => {
 	return {
-		type: 'joiSchema',
+		type: id,
 		base: joi.object(),
 		messages: {
 			error: '"{{#label}}" must be an joi schema'

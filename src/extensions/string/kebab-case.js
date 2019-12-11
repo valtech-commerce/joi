@@ -1,9 +1,11 @@
 //--------------------------------------------------------
 //-- kebab-case
 //--------------------------------------------------------
-export default (joi) => {
+export const id = 'kebabCase';
+
+export const extension = (joi) => {
 	return {
-		type: 'kebabCase',
+		type: id,
 		base: joi.string(),
 		messages: {
 			error: '"{{#label}}" must be kebab-case'
