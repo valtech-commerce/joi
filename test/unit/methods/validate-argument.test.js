@@ -9,7 +9,8 @@ describe(`Validate that validateArgument works`, () => {
 
 	//-- Does validate
 	[
-		['a classic call', ['abc', true, Joi.any()]]
+		['a classic call',     ['abc', true, Joi.any()]],
+		['an undefined value', ['abc', undefined, Joi.any()]]
 	]
 		.forEach(([description, parameters]) => {
 			test(`Ensure ${description} validates`, () => {
@@ -27,7 +28,6 @@ describe(`Validate that validateArgument works`, () => {
 		['a numeric label',     [1]],
 		['an empty label',      ['']],
 		['an invalid label',    ['?']],
-		['an undefined value',  ['abc']],
 		['an undefined schema', ['abc', true]],
 		['an invalid schema',   ['abc', true, {}]]
 	]

@@ -33,7 +33,7 @@ const validateArgument = (label, value, schema) => {
 
 const schemas = {
   label: _joi.default.extend(_variableName.default).variableName().required(),
-  value: _joi.default.any().required(),
+  value: _joi.default.any(),
   schema: _joi.default.extend(_joiSchema.default).joiSchema().required()
 };
 

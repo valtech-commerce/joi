@@ -16,7 +16,7 @@ const validateArgument = (label, value, schema) => {
 
 const schemas = {
 	label:  Joi.extend(variableNameExtension).variableName().required(),
-	value:  Joi.any().required(),
+	value:  Joi.any(),
 	schema: Joi.extend(joiSchemaExtension).joiSchema().required()
 };
 
