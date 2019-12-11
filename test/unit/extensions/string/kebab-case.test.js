@@ -4,7 +4,6 @@
 import helper from '../../helpers/extensions';
 
 
-// eslint-disable-next-line function-paren-newline
 helper.testValues(
 	'kebabCase',
 	[
@@ -33,4 +32,4 @@ helper.testValues(
 		['a hyphen ending',   'abc-'],
 		['an double-hyphen',  'a--b']
 	]
-);  // eslint-disable-line function-paren-newline
+);

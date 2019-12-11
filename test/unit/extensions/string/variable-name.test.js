@@ -4,7 +4,6 @@
 import helper from '../../helpers/extensions';
 
 
-// eslint-disable-next-line function-paren-newline
 helper.testValues(
 	'variableName',
 	[
@@ -27,4 +26,4 @@ helper.testValues(
 		['a kebab-case',      'a-b-c'],
 		['a number starting', '1abc']
 	]
-);  // eslint-disable-line function-paren-newline
+);

@@ -5,7 +5,6 @@ import Joi    from '@hapi/joi';
 import helper from '../../helpers/extensions';
 
 
-// eslint-disable-next-line function-paren-newline
 helper.testValues(
 	'joiSchema',
 	[
@@ -22,4 +21,4 @@ helper.testValues(
 		['a number',        1],
 		['a joi instance',  Joi]
 	]
-);  // eslint-disable-line function-paren-newline
+);

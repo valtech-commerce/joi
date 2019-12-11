@@ -4,7 +4,6 @@
 import helper from '../../helpers/extensions';
 
 
-// eslint-disable-next-line function-paren-newline
 helper.testValues(
 	'absolutePath',
 	[
@@ -29,4 +28,4 @@ helper.testValues(
 		['an upper directory',   '../abc.xyz'],
 		['an current directory', './abc.xyz']
 	]
-);  // eslint-disable-line function-paren-newline
+);

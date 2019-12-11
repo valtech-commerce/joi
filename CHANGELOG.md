@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `kebabCase` extension
 
+### Changed
+- Maintenance updates
+
 
 
 ## [0.1.0] - 2019-11-12
