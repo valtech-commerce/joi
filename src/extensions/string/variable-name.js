@@ -4,9 +4,11 @@
 import isVarName from 'is-var-name';
 
 
-export default (joi) => {
+export const id = 'variableName';
+
+export const extension = (joi) => {
 	return {
-		type: 'variableName',
+		type: id,
 		base: joi.string(),
 		messages: {
 			error: '"{{#label}}" must be a valid JavaScript identifier name'

@@ -1,12 +1,18 @@
 "use strict";
 
+Object.defineProperty(exports, "extensions", {
+  enumerable: true,
+  get: function () {
+    return _extensions.default;
+  }
+});
 Object.defineProperty(exports, "validateArgument", {
   enumerable: true,
   get: function () {
     return _validateArgument.default;
   }
 });
-exports.extensions = exports.Joi = void 0;
+exports.Joi = void 0;
 
 var _joi = _interopRequireDefault(require("@hapi/joi"));
 
@@ -20,24 +26,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //-- @absolunet/joi
 //--------------------------------------------------------
 //-- Load extensions
-const {
-  NewJoi: ExtendedJoi,
-  list: extensions
-} = Object.entries(_extensions.default).reduce(({
-  NewJoi,
-  list
-}, [name, {
-  default: extension
-}]) => {
-  list[name] = extension;
-  return {
-    NewJoi: NewJoi.extend(extension),
-    list
-  };
-}, {
-  NewJoi: _joi.default,
-  list: {}
-});
+const ExtendedJoi = Object.entries(_extensions.default).reduce((NewJoi, [, extension]) => {
+  return NewJoi.extend(extension);
+}, _joi.default);
 /**
  * Exports extra methods using joi.
  *
@@ -51,5 +42,4 @@ const {
  * @type {Joi}
  **/
 
-exports.extensions = extensions;
 exports.Joi = ExtendedJoi;

@@ -1,15 +1,10 @@
 "use strict";
 
 exports.extension = exports.id = void 0;
-
-var _isVarName = _interopRequireDefault(require("is-var-name"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 //--------------------------------------------------------
-//-- Variable name
+//-- kebab-case
 //--------------------------------------------------------
-const id = 'variableName';
+const id = 'kebabCase';
 exports.id = id;
 
 const extension = joi => {
@@ -17,10 +12,10 @@ const extension = joi => {
     type: id,
     base: joi.string(),
     messages: {
-      error: '"{{#label}}" must be a valid JavaScript identifier name'
+      error: '"{{#label}}" must be kebab-case'
     },
     validate: (value, helpers) => {
-      if (!(0, _isVarName.default)(value)) {
+      if (!/^(?:[a-z][a-z0-9]*)(?:-[a-z0-9]+)*$/u.test(value)) {
         return {
           value,
           errors: helpers.error('error')

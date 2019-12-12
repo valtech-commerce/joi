@@ -1,10 +1,11 @@
 //--------------------------------------------------------
 //-- Absolute path
 //--------------------------------------------------------
+export const id = 'absolutePath';
 
-export default (joi) => {
+export const extension = (joi) => {
 	return {
-		type: 'absolutePath',
+		type: id,
 		base: joi.string(),
 		messages: {
 			error: '"{{#label}}" must be an absolute path'

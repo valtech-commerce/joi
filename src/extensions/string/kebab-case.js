@@ -1,17 +1,17 @@
 //--------------------------------------------------------
-//-- joi schema
+//-- kebab-case
 //--------------------------------------------------------
-export const id = 'joiSchema';
+export const id = 'kebabCase';
 
 export const extension = (joi) => {
 	return {
 		type: id,
-		base: joi.object(),
+		base: joi.string(),
 		messages: {
-			error: '"{{#label}}" must be an joi schema'
+			error: '"{{#label}}" must be kebab-case'
 		},
 		validate: (value, helpers) => {
-			if (!joi.isSchema(value)) {
+			if (!(/^(?:[a-z][a-z0-9]*)(?:-[a-z0-9]+)*$/u).test(value)) {
 				return { value, errors: helpers.error('error') };
 			}
 

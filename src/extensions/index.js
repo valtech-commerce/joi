@@ -1,8 +1,18 @@
 //--------------------------------------------------------
 //-- Extensions
 //--------------------------------------------------------
+import * as joiSchema    from './object/joi-schema';
+import * as absolutePath from './string/absolute-path';
+import * as kebabCase    from './string/kebab-case';
+import * as variableName from './string/variable-name';
 
-export { default as joiSchema }    from './object/joi-schema';
 
-export { default as absolutePath } from './string/absolute-path';
-export { default as variableName } from './string/variable-name';
+module.exports = {
+
+	[joiSchema.id]: joiSchema.extension,
+
+	[absolutePath.id]: absolutePath.extension,
+	[kebabCase.id]:    kebabCase.extension,
+	[variableName.id]: variableName.extension
+
+};

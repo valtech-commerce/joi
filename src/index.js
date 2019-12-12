@@ -1,18 +1,15 @@
 //--------------------------------------------------------
 //-- @absolunet/joi
 //--------------------------------------------------------
-import Joi from '@hapi/joi';
-
-import rawExtensions from './extensions';
+import Joi        from '@hapi/joi';
+import extensions from './extensions';
 
 
 //-- Load extensions
-const { NewJoi: ExtendedJoi, list: extensions } = Object.entries(rawExtensions)
-	.reduce(({ NewJoi, list }, [name, { default: extension }]) => {
-		list[name] = extension;
-
-		return { NewJoi: NewJoi.extend(extension), list };
-	}, { NewJoi: Joi, list: {} })
+const ExtendedJoi = Object.entries(extensions)
+	.reduce((NewJoi, [, extension]) => {
+		return NewJoi.extend(extension);
+	}, Joi)
 ;
 
 
@@ -51,4 +48,3 @@ export { extensions };
  * @param {Joi.Schema} schema - {@link https://hapi.dev/family/joi/ Joi schema}.
  **/
 export { default as validateArgument } from './methods/validate-argument';
-
