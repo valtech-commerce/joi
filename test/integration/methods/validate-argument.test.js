@@ -9,7 +9,8 @@ import { given, when, then } from './methods.gwt';
 describe(`Validate that validateArgument works`, () => {
 
 	beforeAll(() => {
-		given.methodsTabulaRasa();
+		given.noException();
+		given.noMethod();
 		given.currentMethod(validateArgument);
 	});
 

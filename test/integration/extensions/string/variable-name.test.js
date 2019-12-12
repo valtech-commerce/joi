@@ -8,7 +8,9 @@ import { id }                from '../../../../dist/node/extensions/string/varia
 describe(`Validate that ${id} extension works`, () => {
 
 	beforeAll(() => {
-		given.extensionsTabulaRasa();
+		given.noException();
+		given.noExtension();
+		given.noResult();
 		given.currentExtension(id);
 	});
 

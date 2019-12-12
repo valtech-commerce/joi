@@ -10,8 +10,8 @@ let exception;
 
 
 
-//-- Given - Tabula rasa
-given.baseTabulaRasa = () => {
+//-- Given - Reset
+given.noException = () => {
 	exception = undefined;
 };
 

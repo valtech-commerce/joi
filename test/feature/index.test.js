@@ -7,24 +7,20 @@ import { given, when, then } from './index.gwt';
 describe(`Validate that it works`, () => {
 
 	beforeAll(() => {
-		given.featureTabulaRasa();
-	});
-
-
-	test(`Ensure package loads`, () => {
-		when.packageIsImported();
-		then.shouldNotHaveThrown();
+		given.noException();
+		given.noImportedPackage();
 	});
 
 
 	test(`Ensure extended joi extends vanilla joi`, () => {
-		when.packageIsImported();
+		when.extendedJoiImported();
 		then.extendedJoiShouldContainVanillaJoi();
 	});
 
 
 	test(`Ensure all extensions are exposed in joi with the same name`, () => {
-		when.packageIsImported();
+		when.extendedJoiImported();
+		when.extensionsImported();
 		then.extendedJoiShouldContainAllExtensions();
 	});
 

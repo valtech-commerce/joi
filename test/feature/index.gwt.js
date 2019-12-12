@@ -1,29 +1,34 @@
 //--------------------------------------------------------
 //-- joi - Feature tests
 //--------------------------------------------------------
-import { difference }        from 'lodash';
-import Joi                   from '@hapi/joi';
-import { given, when, then } from '../base.gwt';
+import { difference }       from 'lodash';
+import Joi                  from '@hapi/joi';
+import * as importedPackage from '../../dist/node';
+import * as gwt             from '../base.gwt';
+
+const given = { ...gwt.given };
+const when  = { ...gwt.when };
+const then  = { ...gwt.then };
 
 
 let ExtendedJoi;
 let extensions;
 
 
-//-- Given - Tabula rasa
-given.featureTabulaRasa = () => {
-	given.baseTabulaRasa();
-
+//-- Given - Reset
+given.noImportedPackage = () => {
 	ExtendedJoi = undefined;
 	extensions  = undefined;
 };
 
 
 //-- When
-when.packageIsImported = () => {
-	when.attempting(() => {
-		({ Joi: ExtendedJoi, extensions } = require('../../dist/node'));  // eslint-disable-line global-require
-	});
+when.extendedJoiImported = () => {
+	({ Joi: ExtendedJoi } = importedPackage);
+};
+
+when.extensionsImported = () => {
+	({ extensions } = importedPackage);
 };
 
 

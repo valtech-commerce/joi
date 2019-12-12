@@ -1,21 +1,27 @@
 //--------------------------------------------------------
 //-- Extensions - Integration tests
 //--------------------------------------------------------
-import { given, when, then } from '../../base.gwt';
-import { Joi }               from '../../../dist/node';
+import { Joi }  from '../../../dist/node';
+import * as gwt from '../../base.gwt';
+
+const given = { ...gwt.given };
+const when  = { ...gwt.when };
+const then  = { ...gwt.then };
+
 
 let extension;
 let value;
 let result;
 
 
-//-- Given - Tabula rasa
-given.extensionsTabulaRasa = () => {
-	given.baseTabulaRasa();
-
+//-- Given - Reset
+given.noExtension = () => {
 	extension = undefined;
 	value     = undefined;
-	result    = undefined;
+};
+
+given.noResult = () => {
+	result = undefined;
 };
 
 

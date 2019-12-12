@@ -1,16 +1,19 @@
 //--------------------------------------------------------
 //-- Methods - Integration tests
 //--------------------------------------------------------
-import { given, when, then } from '../../base.gwt';
+import * as gwt from '../../base.gwt';
+
+const given = { ...gwt.given };
+const when  = { ...gwt.when };
+const then  = { ...gwt.then };
+
 
 let method;
 let parameters;
 
 
-//-- Given - Tabula rasa
-given.methodsTabulaRasa = () => {
-	given.baseTabulaRasa();
-
+//-- Given - Reset
+given.noMethod = () => {
 	method     = undefined;
 	parameters = undefined;
 };
