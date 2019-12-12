@@ -36,11 +36,14 @@ class MyClass () {
 
 ## Extensions
 
+### absolutePath
+Validate that the value is an absolute *nix or Windows path.
+
 ### joiSchema
 Validate that the value is a joi schema.
 
-### absolutePath
-Validate that the value is an absolute *nix or Windows path.
+### kebabCase
+Validate that the value is kebab-case.
 
 ### variableName
 Validate that the value is a JavaScript valid variable name via [is-var-name](https://github.com/shinnn/is-var-name).
