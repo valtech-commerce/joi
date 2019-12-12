@@ -7,7 +7,7 @@ import { id }                from '../../../../dist/node/extensions/string/absol
 
 describe(`Validate that ${id} extension works`, () => {
 
-	beforeAll(() => {
+	beforeEach(() => {
 		given.noException();
 		given.noExtension();
 		given.noResult();
@@ -16,50 +16,96 @@ describe(`Validate that ${id} extension works`, () => {
 
 
 	//-- Does validate
-	[
-		['the root',                         '/'],
-		['a root directory',                 '/abc'],
-		['a absolute directory',             '/abc/xyz'],
-		['a absolute file',                  '/abc.xyz'],
-		['a Windows root drive',             'a:/'],
-		['a Windows root directory',         'a:/bc'],
-		['a Windows absolute file',          'a:/bc.xyz'],
-		['a Windows multiletter root drive', 'ab:/']
-	]
-		.forEach(([description, value]) => {
+	test(`Ensure the root validates`, () => {
+		given.value('/');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
-			test(`Ensure ${description} validates`, () => {
-				given.value(value);
-				when.extensionCalled();
-				then.resultShouldReturnNoError();
-			});
+	test(`Ensure a root directory validates`, () => {
+		given.value('/abc');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
-		})
-	;
+	test(`Ensure a absolute directory validates`, () => {
+		given.value('/abc/xyz');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a absolute file validates`, () => {
+		given.value('/abc.xyz');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a Windows root drive validates`, () => {
+		given.value('a:/');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a Windows root directory validates`, () => {
+		given.value('a:/bc');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a Windows absolute file validates`, () => {
+		given.value('a:/bc.xyz');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a Windows multiletter root drive validates`, () => {
+		given.value('ab:/');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
 
 	//-- Does not validate
-	[
-		['a Number',             1],
-		['a Boolean',            true],
-		['an Array',             []],
-		['an Object',            {}],
-		['an empty string',      ''],
-		['a directory',          'abc'],
-		['a subdirectory',       'abc/xyz'],
-		['a file',               'abc.xyz'],
-		['an upper directory',   '../abc.xyz'],
-		['an current directory', './abc.xyz']
-	]
-		.forEach(([description, value]) => {
+	test(`Ensure a non string does not validate`, () => {
+		given.value(true);
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAString();
+	});
 
-			test(`Ensure ${description} does not validate`, () => {
-				given.value(value);
-				when.extensionCalled();
-				then.resultShouldReturnAnError();
-			});
+	test(`Ensure an empty string does not validate`, () => {
+		given.value('');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringNotEmpty();
+	});
 
-		})
-	;
+	test(`Ensure a directory does not validate`, () => {
+		given.value('abc');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnAbsolutePath();
+	});
+
+	test(`Ensure a subdirectory does not validate`, () => {
+		given.value('abc/xyz');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnAbsolutePath();
+	});
+
+	test(`Ensure a file does not validate`, () => {
+		given.value('abc.xyz');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnAbsolutePath();
+	});
+
+	test(`Ensure an upper directory does not validate`, () => {
+		given.value('../abc.xyz');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnAbsolutePath();
+	});
+
+	test(`Ensure an current directory does not validate`, () => {
+		given.value('./abc.xyz');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnAbsolutePath();
+	});
 
 });

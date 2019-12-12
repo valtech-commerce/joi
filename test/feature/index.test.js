@@ -6,7 +6,7 @@ import { given, when, then } from './index.gwt';
 
 describe(`Validate that it works`, () => {
 
-	beforeAll(() => {
+	beforeEach(() => {
 		given.noException();
 		given.noImportedPackage();
 	});

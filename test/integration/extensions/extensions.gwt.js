@@ -42,12 +42,41 @@ when.extensionCalled = () => {
 
 
 //-- Then
-then.resultShouldReturnNoError = () => {
+then.resultShouldHaveNoError = () => {
 	expect(result).not.toContainKey('error');
 };
 
-then.resultShouldReturnAnError = () => {
-	expect(result).toContainKey('error');
+then.resultShouldHaveAnErrorContaining = (text) => {
+	expect(result.error.details).toBeArrayOfSize(1);
+	expect(result.error.details[0].message).toContain(text);
+};
+
+then.resultShouldHaveAnErrorRequiringNotEmpty = () => {
+	then.resultShouldHaveAnErrorContaining('"value" is not allowed to be empty');
+};
+
+then.resultShouldHaveAnErrorRequiringAnObject = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be of type object');
+};
+
+then.resultShouldHaveAnErrorRequiringAString = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be a string');
+};
+
+then.resultShouldHaveAnErrorRequiringAJoiSchema = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be an joi schema');
+};
+
+then.resultShouldHaveAnErrorRequiringAnAbsolutePath = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be an absolute path');
+};
+
+then.resultShouldHaveAnErrorRequiringAKebabCase = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be kebab-case');
+};
+
+then.resultShouldHaveAnErrorRequiringAVariableName = () => {
+	then.resultShouldHaveAnErrorContaining('"value" must be a valid JavaScript identifier name');
 };
 
 

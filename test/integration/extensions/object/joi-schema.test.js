@@ -8,7 +8,7 @@ import { id }                from '../../../../dist/node/extensions/object/joi-s
 
 describe(`Validate that ${id} extension works`, () => {
 
-	beforeAll(() => {
+	beforeEach(() => {
 		given.noException();
 		given.noExtension();
 		given.noResult();
@@ -17,42 +17,54 @@ describe(`Validate that ${id} extension works`, () => {
 
 
 	//-- Does validate
-	[
-		['a joi any schema',     Joi.any()],
-		['a joi string schema',  Joi.string()],
-		['a joi boolean schema', Joi.boolean()],
-		['a joi object schema',  Joi.object()],
-		['a joi array schema',   Joi.array()]
-	]
-		.forEach(([description, value]) => {
+	test(`Ensure a joi any schema validates`, () => {
+		given.value(Joi.any());
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
-			test(`Ensure ${description} validates`, () => {
-				given.value(value);
-				when.extensionCalled();
-				then.resultShouldReturnNoError();
-			});
+	test(`Ensure a joi string schema validates`, () => {
+		given.value(Joi.string());
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
-		})
-	;
+	test(`Ensure a joi boolean schema validates`, () => {
+		given.value(Joi.boolean());
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a joi object schema validates`, () => {
+		given.value(Joi.object());
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
+	test(`Ensure a joi array schema validates`, () => {
+		given.value(Joi.array());
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
 
 
 	//-- Does not validate
-	[
-		['a simple object', {}],
-		['an array',        []],
-		['a boolean',       true],
-		['a number',        1],
-		['a joi instance',  Joi]
-	]
-		.forEach(([description, value]) => {
+	test(`Ensure a non object does not validate`, () => {
+		given.value(true);
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAnObject();
+	});
 
-			test(`Ensure ${description} does not validate`, () => {
-				given.value(value);
-				when.extensionCalled();
-				then.resultShouldReturnAnError();
-			});
+	test(`Ensure a simple object does not validate`, () => {
+		given.value({});
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAJoiSchema();
+	});
 
-		})
-	;
+	test(`Ensure a joi instance does not validate`, () => {
+		given.value(Joi);
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAJoiSchema();
+	});
 
 });
