@@ -1,18 +1,15 @@
 //--------------------------------------------------------
 //-- Variable name - Integration tests
 //--------------------------------------------------------
-import { given, when, then } from '../extensions.gwt';
+import extensionTests        from '../extension-tests';
 import { id }                from '../../../../dist/node/extensions/string/variable-name';
+import { given, when, then } from './variable-name.gwt';
 
 
 describe(`Validate that ${id} extension works`, () => {
 
-	beforeEach(() => {
-		given.noException();
-		given.noExtension();
-		given.noResult();
-		given.currentExtension(id);
-	});
+	//-- Base
+	extensionTests({ given, when, then });
 
 
 	//-- Does validate

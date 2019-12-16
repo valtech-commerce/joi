@@ -26,7 +26,7 @@ given.noResult = () => {
 
 
 //-- Given
-given.currentExtension = (parameter) => {
+given.extension = (parameter) => {
 	extension = parameter;
 };
 

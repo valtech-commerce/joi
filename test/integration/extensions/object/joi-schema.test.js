@@ -2,18 +2,15 @@
 //-- joi schema - Integration tests
 //--------------------------------------------------------
 import Joi                   from '@hapi/joi';
-import { given, when, then } from '../extensions.gwt';
+import extensionTests        from '../extension-tests';
 import { id }                from '../../../../dist/node/extensions/object/joi-schema';
+import { given, when, then } from './joi-schema.gwt';
 
 
 describe(`Validate that ${id} extension works`, () => {
 
-	beforeEach(() => {
-		given.noException();
-		given.noExtension();
-		given.noResult();
-		given.currentExtension(id);
-	});
+	//-- Base
+	extensionTests({ given, when, then });
 
 
 	//-- Does validate

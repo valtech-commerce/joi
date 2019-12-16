@@ -1,18 +1,15 @@
 //--------------------------------------------------------
 //-- Kebab case - Integration tests
 //--------------------------------------------------------
-import { given, when, then } from '../extensions.gwt';
+import extensionTests        from '../extension-tests';
 import { id }                from '../../../../dist/node/extensions/string/kebab-case';
+import { given, when, then } from './kebab-case.gwt';
 
 
 describe(`Validate that ${id} extension works`, () => {
 
-	beforeEach(() => {
-		given.noException();
-		given.noExtension();
-		given.noResult();
-		given.currentExtension(id);
-	});
+	//-- Base
+	extensionTests({ given, when, then });
 
 
 	//-- Does validate
