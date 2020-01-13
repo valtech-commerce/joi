@@ -8,7 +8,7 @@ export const extension = (joi) => {
 		type: id,
 		base: joi.object(),
 		messages: {
-			error: '"{{#label}}" must be an joi schema'
+			error: '{{#label}} must be an joi schema'
 		},
 		validate: (value, helpers) => {
 			if (!joi.isSchema(value)) {

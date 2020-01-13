@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - `variableName` supports dot separated notation
+- Upgrade to joi 17
+- Maintenance updates
 
 
 
@@ -36,6 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/node-joi/compare/0.2.0...HEAD
-[0.2.0]:         https://github.com/absolunet/node-joi/compare/0.1.0...0.2.0
-[0.1.0]:         https://github.com/absolunet/node-joi/releases/tag/0.1.0
+[Unreleased]: https://github.com/absolunet/node-joi/compare/0.2.0...HEAD
+[0.2.0]:      https://github.com/absolunet/node-joi/compare/0.1.0...0.2.0
+[0.1.0]:      https://github.com/absolunet/node-joi/releases/tag/0.1.0
