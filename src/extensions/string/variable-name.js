@@ -14,7 +14,11 @@ export const extension = (joi) => {
 			error: '"{{#label}}" must be a valid JavaScript identifier name'
 		},
 		validate: (value, helpers) => {
-			if (!isVarName(value)) {
+			const valid = value.split('.').every((item) => {
+				return isVarName(item);
+			});
+
+			if (!valid) {
 				return { value, errors: helpers.error('error') };
 			}
 

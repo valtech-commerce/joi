@@ -43,6 +43,12 @@ describe(`Validate that ${id} extension works`, () => {
 		then.resultShouldHaveNoError();
 	});
 
+	test(`Ensure a dot separated validates`, () => {
+		given.value('a1.b2.c3');
+		when.extensionCalled();
+		then.resultShouldHaveNoError();
+	});
+
 
 	//-- Does not validate
 	test(`Ensure a non-string does not validate`, () => {
@@ -89,6 +95,24 @@ describe(`Validate that ${id} extension works`, () => {
 
 	test(`Ensure a number starting does not validate`, () => {
 		given.value('1abc');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAVariableName();
+	});
+
+	test(`Ensure a dot starting does not validate`, () => {
+		given.value('.a1.b2.c3');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAVariableName();
+	});
+
+	test(`Ensure a dot ending does not validate`, () => {
+		given.value('a1.b2.c3.');
+		when.extensionCalled();
+		then.resultShouldHaveAnErrorRequiringAVariableName();
+	});
+
+	test(`Ensure a double-dot does not validate`, () => {
+		given.value('a1..b2.c3');
 		when.extensionCalled();
 		then.resultShouldHaveAnErrorRequiringAVariableName();
 	});
