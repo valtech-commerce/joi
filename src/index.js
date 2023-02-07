@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- @absolunet/joi
+//-- @valtech-commerce/joi
 //--------------------------------------------------------
 import Joi        from '@hapi/joi';
 import extensions from './extensions';
@@ -20,7 +20,7 @@ const ExtendedJoi = Object.entries(extensions)
 /**
  * Exports extra methods using joi.
  *
- * @module @absolunet/joi
+ * @module @valtech-commerce/joi
  */
 
 /**
